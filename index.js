@@ -7,14 +7,14 @@ function ataqueUserEelemento(){
     ataqueFuego.addEventListener('click', () => alert('atacas con candela'));
     ataqueAgua.addEventListener('click', () => alert('atacas con agua')); 
     ataqueTierra.addEventListener('click', () => alert('atacas con tierra'));
-}
+};
 
 
 
 ataqueUserEelemento();
 /* ataquePcEelemento(); */
 
-var 
+
 
 seleccion.addEventListener('click', function(){
     var hipodoge = document.querySelector('#hipodoge')
