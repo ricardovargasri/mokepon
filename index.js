@@ -1,23 +1,53 @@
-agrego nombre;
-
-
+//boton de seleccion de mascota
 var seleccion = document.querySelector('#seleccionar-mascota');
+
+//botones de elemento de ataque
 var ataqueFuego = document.querySelector('#boton-fuego');
 var ataqueAgua = document.querySelector('#boton-agua');
 var ataqueTierra = document.querySelector('#boton-tierra');
 
-function ataqueUserEelemento(){
-    ataqueFuego.addEventListener('click', () => alert('atacas con candela'));
-    ataqueAgua.addEventListener('click', () => alert('atacas con agua')); 
-    ataqueTierra.addEventListener('click', () => alert('atacas con tierra'));
+//mensaje elementos usados para atacar
+var userElementAtack = document.querySelector('.user-element-atack');
+var ataquePcEelemento = document.querySelector('.pc-element-atack');
+
+
+//funcion aleatoria
+function aleatorio(min, max){
+    return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
+function ataqueUserEelemento(){
+    ataqueFuego.addEventListener('click', () => {
+        userElementAtack.innerHTML = ataqueFuego.textContent;
+    ataqueAleatorioEnemigo();}
+         
+        );
+    ataqueAgua.addEventListener('click', () => {
+        userElementAtack.innerHTML = ataqueAgua.textContent;
+        ataqueAleatorioEnemigo();}
+    ); 
+    ataqueTierra.addEventListener('click', () => {
+        userElementAtack.innerHTML = ataqueTierra.textContent;
+         ataqueAleatorioEnemigo();}
+        );
+};
 
+function ataqueAleatorioEnemigo(){
+    let ataqueEnemigo = aleatorio(1, 3);
+    if(ataqueEnemigo === 1){
+        ataquePcEelemento.innerHTML = ataqueFuego.textContent;
+    } else if(ataqueEnemigo === 2){
+        ataquePcEelemento.innerHTML = ataqueAgua.textContent;
+    }
+    else{
+        ataquePcEelemento.innerHTML = ataqueTierra.textContent;
+    }
+};
 
 ataqueUserEelemento();
-/* ataquePcEelemento(); */
 
-var 
+
+
 
 seleccion.addEventListener('click', function(){
     var hipodoge = document.querySelector('#hipodoge')
@@ -37,6 +67,21 @@ seleccion.addEventListener('click', function(){
     };
     eleccionEnemigo();
 });
+
+
+function eleccionEnemigo(){
+    let ataqueAleatorio = aleatorio(1, 3);
+    let spanMascotaEnemigo = document.querySelector('#enemiga-mascota');
+    if(ataqueAleatorio == 1){
+        spanMascotaEnemigo.innerHTML = 'hipodoge';
+    } else if(ataqueAleatorio == 2){
+        spanMascotaEnemigo.innerHTML = 'capipepo';
+    }
+    else{
+        spanMascotaEnemigo.innerHTML = 'ratigueya';
+    }
+}
+
 
 
 function eleccionEnemigo(){
