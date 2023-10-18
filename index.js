@@ -8,6 +8,7 @@ var ataqueTierra = document.querySelector('#boton-tierra');
 
 //mensaje elementos usados para atacar
 var userElementAtack = document.querySelector('.user-element-atack');
+var ataquePcEelemento = document.querySelector('.pc-element-atack');
 
 
 //funcion aleatoria
@@ -17,29 +18,34 @@ function aleatorio(min, max){
 
 function ataqueUserEelemento(){
     ataqueFuego.addEventListener('click', () => {
-        userElementAtack.innerHTML = ataqueFuego.textContent} 
+        userElementAtack.innerHTML = ataqueFuego.textContent;
+    ataqueAleatorioEnemigo();}
+         
         );
     ataqueAgua.addEventListener('click', () => {
-        userElementAtack.innerHTML = ataqueAgua.textContent}); 
+        userElementAtack.innerHTML = ataqueAgua.textContent;
+        ataqueAleatorioEnemigo();}
+    ); 
     ataqueTierra.addEventListener('click', () => {
-        userElementAtack.innerHTML = ataqueTierra.textContent});
+        userElementAtack.innerHTML = ataqueTierra.textContent;
+         ataqueAleatorioEnemigo();}
+        );
 };
 
-function ataquePcEelemento(){
-    let elementoPcAleatorio = aleatorio(1, 3);
-    let pcElementAtack = document.querySelector('.pc-element-atack');
-    
-    if(elementoPcAleatorio === 1){
-        pcElementAtack.innerHTML = ataqueFuego.textContent;}
-    else if(elementoPcAleatorio === 2){
-        pcElementAtack.innerHTML = ataqueAgua.textContent;}
-    else if(elementoPcAleatorio === 3){
-      pcElementAtack.innerHTML = ataqueTierra.textContent}   
+function ataqueAleatorioEnemigo(){
+    let ataqueEnemigo = aleatorio(1, 3);
+    if(ataqueEnemigo === 1){
+        ataquePcEelemento.innerHTML = ataqueFuego.textContent;
+    } else if(ataqueEnemigo === 2){
+        ataquePcEelemento.innerHTML = ataqueAgua.textContent;
+    }
+    else{
+        ataquePcEelemento.innerHTML = ataqueTierra.textContent;
+    }
 };
-
 
 ataqueUserEelemento();
-ataquePcEelemento();
+
 
 
 
