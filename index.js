@@ -1,18 +1,45 @@
+//boton de seleccion de mascota
 var seleccion = document.querySelector('#seleccionar-mascota');
+
+//botones de elemento de ataque
 var ataqueFuego = document.querySelector('#boton-fuego');
 var ataqueAgua = document.querySelector('#boton-agua');
 var ataqueTierra = document.querySelector('#boton-tierra');
 
+//mensaje elementos usados para atacar
+var userElementAtack = document.querySelector('.user-element-atack');
+
+
+//funcion aleatoria
+function aleatorio(min, max){
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
 function ataqueUserEelemento(){
-    ataqueFuego.addEventListener('click', () => alert('atacas con candela'));
-    ataqueAgua.addEventListener('click', () => alert('atacas con agua')); 
-    ataqueTierra.addEventListener('click', () => alert('atacas con tierra'));
+    ataqueFuego.addEventListener('click', () => {
+        userElementAtack.innerHTML = ataqueFuego.textContent} 
+        );
+    ataqueAgua.addEventListener('click', () => {
+        userElementAtack.innerHTML = ataqueAgua.textContent}); 
+    ataqueTierra.addEventListener('click', () => {
+        userElementAtack.innerHTML = ataqueTierra.textContent});
+};
+
+function ataquePcEelemento(){
+    let elementoPcAleatorio = aleatorio(1, 3);
+    let pcElementAtack = document.querySelector('.pc-element-atack');
+    
+    if(elementoPcAleatorio === 1){
+        pcElementAtack.innerHTML = ataqueFuego.textContent;}
+    else if(elementoPcAleatorio === 2){
+        pcElementAtack.innerHTML = ataqueAgua.textContent;}
+    else if(elementoPcAleatorio === 3){
+      pcElementAtack.innerHTML = ataqueTierra.textContent}   
 };
 
 
-
 ataqueUserEelemento();
-/* ataquePcEelemento(); */
+ataquePcEelemento();
 
 
 
@@ -49,6 +76,3 @@ function eleccionEnemigo(){
     }
 }
 
-function aleatorio(min, max){
-    return Math.floor(Math.random() * (max - min + 1) + min)
-}
