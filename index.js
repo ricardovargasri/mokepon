@@ -1,3 +1,7 @@
+// variables de quien ataca
+let ataqueJugador
+let ataqueEnemigo
+
 //boton de seleccion de mascota
 var seleccion = document.querySelector('#seleccionar-mascota');
 
@@ -6,11 +10,6 @@ var ataqueFuego = document.querySelector('#boton-fuego');
 var ataqueAgua = document.querySelector('#boton-agua');
 var ataqueTierra = document.querySelector('#boton-tierra');
 
-//mensaje elementos usados para atacar
-var userElementAtack = document.querySelector('.user-element-atack');
-var ataquePcEelemento = document.querySelector('.pc-element-atack');
-
-
 //funcion aleatoria
 function aleatorio(min, max){
     return Math.floor(Math.random() * (max - min + 1) + min)
@@ -18,30 +17,41 @@ function aleatorio(min, max){
 
 function ataqueUserEelemento(){
     ataqueFuego.addEventListener('click', () => {
-        userElementAtack.innerHTML = ataqueFuego.textContent;
+        ataqueJugador = ataqueFuego.textContent;
     ataqueAleatorioEnemigo();}
          
         );
     ataqueAgua.addEventListener('click', () => {
-        userElementAtack.innerHTML = ataqueAgua.textContent;
+        ataqueJugador = ataqueAgua.textContent;
         ataqueAleatorioEnemigo();}
     ); 
     ataqueTierra.addEventListener('click', () => {
-        userElementAtack.innerHTML = ataqueTierra.textContent;
+        ataqueJugador = ataqueTierra.textContent;
          ataqueAleatorioEnemigo();}
         );
 };
 
 function ataqueAleatorioEnemigo(){
-    let ataqueEnemigo = aleatorio(1, 3);
-    if(ataqueEnemigo === 1){
-        ataquePcEelemento.innerHTML = ataqueFuego.textContent;
-    } else if(ataqueEnemigo === 2){
-        ataquePcEelemento.innerHTML = ataqueAgua.textContent;
+    let ataqueEnemigoElemento = aleatorio(1, 3);
+    if(ataqueEnemigoElemento === 1){
+        ataqueEnemigo = ataqueFuego.textContent;
+    } else if(ataqueEnemigoElemento === 2){
+        ataqueEnemigo = ataqueAgua.textContent;
     }
     else{
-        ataquePcEelemento.innerHTML = ataqueTierra.textContent;
+        ataqueEnemigo = ataqueTierra.textContent;
     }
+
+    crearMensaje();
+};
+
+function crearMensaje(){
+    let descripcion = document.querySelector('#mensaje-ataque');
+    let parrafo = document.createElement('p');
+    parrafo.innerHTML = 'Jugador ataco con '+ ataqueJugador +' y la maquina ataco con '+ ataqueEnemigo;
+
+    descripcion.appendChild(parrafo);
+
 };
 
 ataqueUserEelemento();
