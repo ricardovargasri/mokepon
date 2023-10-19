@@ -10,6 +10,9 @@ var ataqueTierra = document.querySelector('#boton-tierra');
 var userElementAtack = document.querySelector('.user-element-atack');
 var ataquePcEelemento = document.querySelector('.pc-element-atack');
 var victoria = document.getElementById('mensaje-victoria');
+//vidas
+var vidasJugador = 3 //document.querySelector('#vidas-jugador');
+var vidasEnemigo = 3 //document.querySelector('#vidas-enemigo');
 
 
 //funcion aleatoria
@@ -53,35 +56,39 @@ function ataqueAleatorioEnemigo(){
 
 ataqueUserEelemento();
 
-function resultado(){ 
-    if(userElementAtack.innerHTML == ataqueFuego.textContent && ataquePcEelemento.innerHTML == ataqueTierra.textContent){
-        victoria.innerHTML = 'gana la persona'
-    }
-    else if(userElementAtack.innerHTML == ataqueAgua.textContent && ataquePcEelemento.innerHTML == ataqueFuego.textContent){
-        victoria.innerHTML = 'gana la persona';
-    } else if(userElementAtack.innerHTML == ataqueTierra.textContent && ataquePcEelemento.innerHTML == ataqueAgua.textContent){
-        victoria.innerHTML = 'gana la persona';
-    }else if (userElementAtack.innerHTML == ataquePcEelemento.innerHTML){
-        victoria.innerHTML = 'hay un empate';
-    }
-    else{
-        victoria.innerHTML = 'gana la maquina'
-    }
-};
 
-function resultado(){ 
+
+function resultado(){
+    var spanVidasJugador = document.querySelector('#vidas-jugador');
+    var spanVidasEnemigo = document.querySelector('#vidas-enemigo');
+
     if(userElementAtack.innerHTML == ataqueFuego.textContent && ataquePcEelemento.innerHTML == ataqueTierra.textContent){
-        victoria.innerHTML = 'gana la persona'
+        victoria.innerHTML = 'punto para la persona';
+        vidasEnemigo--;
+        spanVidasEnemigo.innerHTML = vidasEnemigo;
+        
     }
     else if(userElementAtack.innerHTML == ataqueAgua.textContent && ataquePcEelemento.innerHTML == ataqueFuego.textContent){
-        victoria.innerHTML = 'gana la persona';
+        victoria.innerHTML = 'punto para la persona';
+        vidasEnemigo--;
+        spanVidasEnemigo.innerHTML = vidasEnemigo;
+        
     } else if(userElementAtack.innerHTML == ataqueTierra.textContent && ataquePcEelemento.innerHTML == ataqueAgua.textContent){
-        victoria.innerHTML = 'gana la persona';
+        victoria.innerHTML = 'punto para la persona';
+        vidasEnemigo--;
+        spanVidasEnemigo.innerHTML = vidasEnemigo;
+        
     }else if (userElementAtack.innerHTML == ataquePcEelemento.innerHTML){
-        victoria.innerHTML = 'hay un empate';
+        victoria.innerHTML = 'empate';
+        
+        spanVidasEnemigo.innerHTML = vidasEnemigo;
+        
     }
     else{
-        victoria.innerHTML = 'gana la maquina'
+        victoria.innerHTML = 'punto para la maquina';
+        vidasJugador--;
+        spanVidasJugador.innerHTML = vidasJugador;
+        
     }
 };
 seleccion.addEventListener('click', function(){
