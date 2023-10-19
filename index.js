@@ -1,8 +1,3 @@
-// variables de quien ataca
-let ataqueJugador
-let ataqueEnemigo
-
-
 //boton de seleccion de mascota
 var seleccion = document.querySelector('#seleccionar-mascota');
 
@@ -14,6 +9,7 @@ var ataqueTierra = document.querySelector('#boton-tierra');
 //mensaje elementos usados para atacar
 var userElementAtack = document.querySelector('.user-element-atack');
 var ataquePcEelemento = document.querySelector('.pc-element-atack');
+var victoria = document.getElementById('mensaje-victoria');
 
 
 //funcion aleatoria
@@ -24,57 +20,36 @@ function aleatorio(min, max){
 function ataqueUserEelemento(){
     ataqueFuego.addEventListener('click', () => {
         userElementAtack.innerHTML = ataqueFuego.textContent;
-    ataqueAleatorioEnemigo();}
+        ataqueAleatorioEnemigo();
+        resultado();//se acutaliza el inner html del span que define el ataque con el innertext ataquefuego
+    }//luego de seleccionado unou otro boton por el susario se hace una seleccion aleatoria para la maquina
          
         );
     ataqueAgua.addEventListener('click', () => {
         userElementAtack.innerHTML = ataqueAgua.textContent;
-        ataqueAleatorioEnemigo();}
+        ataqueAleatorioEnemigo();
+        resultado();
+        }
     ); 
     ataqueTierra.addEventListener('click', () => {
         userElementAtack.innerHTML = ataqueTierra.textContent;
-         ataqueAleatorioEnemigo();}
+        ataqueAleatorioEnemigo();
+        resultado();
+         }
         );
 };
 
 function ataqueAleatorioEnemigo(){
-    let ataqueEnemigoElemento = aleatorio(1, 3);
-    if(ataqueEnemigoElemento === 1){
-        ataqueEnemigo = ataqueFuego.textContent;
-    } else if(ataqueEnemigoElemento === 2){
-        ataqueEnemigo = ataqueAgua.textContent;
+    let ataqueEnemigo = aleatorio(1, 3);
+    if(ataqueEnemigo === 1){
+        ataquePcEelemento.innerHTML = ataqueFuego.textContent;
+    } else if(ataqueEnemigo === 2){
+        ataquePcEelemento.innerHTML = ataqueAgua.textContent;
     }
     else{
-        ataqueEnemigo = ataqueTierra.textContent;
+        ataquePcEelemento.innerHTML = ataqueTierra.textContent;
     }
-    combate();
-    /* crearMensaje(); */
 };
-
-//combate
-function crearMensaje(resultado){
-    let descripcion = document.querySelector('#mensaje-ataque');
-    let parrafo = document.createElement('p');
-    parrafo.textContent = 'Jugador ataco con '+ ataqueJugador +
-    ' y la maquina ataco con '+ ataqueEnemigo +' y el resultado es: '+resultado;
-
-    descripcion.appendChild(parrafo);
-    
-};
-function combate(){
-    if(ataqueJugador == ataqueFuego && ataqueEnemigo == ataqueTierra //fuego > tierra
-         || ataqueJugador == ataqueTierra && ataqueEnemigo == ataqueAgua //tierra >agua
-         || ataqueJugador == ataqueAgua && ataqueEnemigo == ataqueFuego){//agua >fuego
-        crearMensaje('gana el jugador');
-    } else if(ataqueJugador == ataqueEnemigo){
-        crearMensaje('hay un empate');
-    }
-    else{
-        crearMensaje('gana la maquina');
-    }
-}
-
-
 
 ataqueUserEelemento();
 
@@ -140,23 +115,4 @@ function eleccionEnemigo(){
     else{
         spanMascotaEnemigo.innerHTML = 'ratigueya';
     }
-}
-
-
-
-function eleccionEnemigo(){
-    let ataqueAleatorio = aleatorio(1, 3);
-    let spanMascotaEnemigo = document.querySelector('#enemiga-mascota');
-    if(ataqueAleatorio == 1){
-        spanMascotaEnemigo.innerHTML = 'hipodoge';
-    } else if(ataqueAleatorio == 2){
-        spanMascotaEnemigo.innerHTML = 'capipepo';
-    }
-    else{
-        spanMascotaEnemigo.innerHTML = 'ratigueya';
-    }
-}
-
-function aleatorio(min, max){
-    return Math.floor(Math.random() * (max - min + 1) + min)
 }
