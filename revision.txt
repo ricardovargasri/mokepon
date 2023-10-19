@@ -1,0 +1,23 @@
+function ataqueFuego(){ataqueJugador='FUEGO'
+ataqueAleatorioEnemigo()}
+
+function ataqueAgua(){ataqueJugador='AGUA'
+ataqueAleatorioEnemigo()}
+
+function ataqueTierra(){ataqueJugador='TIERRA'
+ataqueAleatorioEnemigo()}
+
+function ataqueAleatorioEnemigo(){let ataqueAleatorio=aleatorio(1,3)
+if(ataqueAleatorio==1){ataqueEnemigo='FUEGO'}else if(ataqueAleatorio==2){ataqueEnemigo='AGUA'}else{ataqueEnemigo='TIERRA'}
+combate()}
+
+function combate(){if(ataqueEnemigo==ataqueJugador){crearMensaje("EMPATE")}
+else if(ataqueJugador=='FUEGO'&&ataqueEnemigo=='TIERRA'){crearMensaje("GANASTE")}
+else if(ataqueJugador=='AGUA'&&ataqueEnemigo=='FUEGO'){crearMensaje("GANASTE")}
+else if(ataqueJugador=='TIERRA'&&ataqueEnemigo=='AGUA'){crearMensaje("GANASTE")}
+else{crearMensaje("PERDISTE")}}
+
+function crearMensaje(resultado){let sectionMensajes=document.getElementById('mensajes')
+let parrafo=document.createElement('p')
+parrafo.innerHTML='Tu mascota atacó con '+ataqueJugador+', las mascota del enemigo atacó con '+ataqueEnemigo+'- '+resultado
+sectionMensajes.appendChild(parrafo)}

@@ -11,6 +11,11 @@ var ataqueFuego = document.querySelector('#boton-fuego');
 var ataqueAgua = document.querySelector('#boton-agua');
 var ataqueTierra = document.querySelector('#boton-tierra');
 
+//mensaje elementos usados para atacar
+var userElementAtack = document.querySelector('.user-element-atack');
+var ataquePcEelemento = document.querySelector('.pc-element-atack');
+
+
 //funcion aleatoria
 function aleatorio(min, max){
     return Math.floor(Math.random() * (max - min + 1) + min)
@@ -18,16 +23,16 @@ function aleatorio(min, max){
 
 function ataqueUserEelemento(){
     ataqueFuego.addEventListener('click', () => {
-        ataqueJugador = ataqueFuego.textContent;
+        userElementAtack.innerHTML = ataqueFuego.textContent;
     ataqueAleatorioEnemigo();}
          
         );
     ataqueAgua.addEventListener('click', () => {
-        ataqueJugador = ataqueAgua.textContent;
+        userElementAtack.innerHTML = ataqueAgua.textContent;
         ataqueAleatorioEnemigo();}
     ); 
     ataqueTierra.addEventListener('click', () => {
-        ataqueJugador = ataqueTierra.textContent;
+        userElementAtack.innerHTML = ataqueTierra.textContent;
          ataqueAleatorioEnemigo();}
         );
 };
@@ -73,9 +78,37 @@ function combate(){
 
 ataqueUserEelemento();
 
+function resultado(){ 
+    if(userElementAtack.innerHTML == ataqueFuego.textContent && ataquePcEelemento.innerHTML == ataqueTierra.textContent){
+        victoria.innerHTML = 'gana la persona'
+    }
+    else if(userElementAtack.innerHTML == ataqueAgua.textContent && ataquePcEelemento.innerHTML == ataqueFuego.textContent){
+        victoria.innerHTML = 'gana la persona';
+    } else if(userElementAtack.innerHTML == ataqueTierra.textContent && ataquePcEelemento.innerHTML == ataqueAgua.textContent){
+        victoria.innerHTML = 'gana la persona';
+    }else if (userElementAtack.innerHTML == ataquePcEelemento.innerHTML){
+        victoria.innerHTML = 'hay un empate';
+    }
+    else{
+        victoria.innerHTML = 'gana la maquina'
+    }
+};
 
-
-
+function resultado(){ 
+    if(userElementAtack.innerHTML == ataqueFuego.textContent && ataquePcEelemento.innerHTML == ataqueTierra.textContent){
+        victoria.innerHTML = 'gana la persona'
+    }
+    else if(userElementAtack.innerHTML == ataqueAgua.textContent && ataquePcEelemento.innerHTML == ataqueFuego.textContent){
+        victoria.innerHTML = 'gana la persona';
+    } else if(userElementAtack.innerHTML == ataqueTierra.textContent && ataquePcEelemento.innerHTML == ataqueAgua.textContent){
+        victoria.innerHTML = 'gana la persona';
+    }else if (userElementAtack.innerHTML == ataquePcEelemento.innerHTML){
+        victoria.innerHTML = 'hay un empate';
+    }
+    else{
+        victoria.innerHTML = 'gana la maquina'
+    }
+};
 seleccion.addEventListener('click', function(){
     var hipodoge = document.querySelector('#hipodoge')
     var capipepo = document.querySelector('#capipepo')
