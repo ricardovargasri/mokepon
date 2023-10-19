@@ -2,6 +2,7 @@
 let ataqueJugador
 let ataqueEnemigo
 
+
 //boton de seleccion de mascota
 var seleccion = document.querySelector('#seleccionar-mascota');
 
@@ -41,18 +42,34 @@ function ataqueAleatorioEnemigo(){
     else{
         ataqueEnemigo = ataqueTierra.textContent;
     }
-
-    crearMensaje();
+    combate();
+    /* crearMensaje(); */
 };
 
-function crearMensaje(){
+//combate
+function crearMensaje(resultado){
     let descripcion = document.querySelector('#mensaje-ataque');
     let parrafo = document.createElement('p');
-    parrafo.innerHTML = 'Jugador ataco con '+ ataqueJugador +' y la maquina ataco con '+ ataqueEnemigo;
+    parrafo.textContent = 'Jugador ataco con '+ ataqueJugador +
+    ' y la maquina ataco con '+ ataqueEnemigo +' y el resultado es: '+resultado;
 
     descripcion.appendChild(parrafo);
-
+    
 };
+function combate(){
+    if(ataqueJugador == ataqueFuego && ataqueEnemigo == ataqueTierra //fuego > tierra
+         || ataqueJugador == ataqueTierra && ataqueEnemigo == ataqueAgua //tierra >agua
+         || ataqueJugador == ataqueAgua && ataqueEnemigo == ataqueFuego){//agua >fuego
+        crearMensaje('gana el jugador');
+    } else if(ataqueJugador == ataqueEnemigo){
+        crearMensaje('hay un empate');
+    }
+    else{
+        crearMensaje('gana la maquina');
+    }
+}
+
+
 
 ataqueUserEelemento();
 
